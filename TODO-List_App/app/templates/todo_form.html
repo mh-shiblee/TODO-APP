@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% block title %}{{ title }} - Todo App{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">
+          <i
+            class="bi bi-{% if 'Add' in title %}plus-circle{% else %}pencil{% endif %}"
+          ></i>
+          {{ title }}
+        </h4>
+      </div>
+      <div class="card-body p-4">
+        <form method="POST" novalidate>
+          {{ form.hidden_tag() }}
+
+          <!-- Title -->
+          <div class="mb-3">
+            {{ form.title.label(class="form-label fw-bold") }} {{
+            form.title(class="form-control form-control-lg" + (" is-invalid" if
+            form.title.errors else ""), placeholder="What do you need to do?")
+            }} {% for error in form.title.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3">
+            {{ form.description.label(class="form-label fw-bold") }} {{
+            form.description(class="form-control" + (" is-invalid" if
+            form.description.errors else ""), rows=4, placeholder="Describe your
+            goal... What do you want to achieve with this task?") }}
+            <small class="text-muted">Tip: Be specific about your goal!</small>
+            {% for error in form.description.errors %}
+            <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+          </div>
+
+          <!-- Status -->
+          <div class="mb-4">
+            {{ form.status.label(class="form-label fw-bold") }} {{
+            form.status(class="form-select") }}
+          </div>
+
+          <!-- Buttons -->
+          <div class="d-flex gap-2">
+            {{ form.submit(class="btn btn-success btn-lg") }}
+            <a href="{{ url_for('todos') }}" class="btn btn-secondary btn-lg">
+              <i class="bi bi-x-circle"></i> Cancel
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
