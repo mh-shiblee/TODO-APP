@@ -1,6 +1,6 @@
 # Todo List App
 
-#### Video Demo: <https://youtu.be/kyDo1qXCt0E>
+#### Video Demo: <[https://youtu.be/kyDo1qXCt0E](https://youtu.be/kyDo1qXCt0E)>
 
 #### Description:
 
